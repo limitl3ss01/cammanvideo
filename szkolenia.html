@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szkolenia - Kamil Rosikiewicz</title>
+    
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#ff3366">
+    <meta name="msapplication-TileColor" content="#ff3366">
+    <meta name="theme-color" content="#ff3366">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+        .training-hero {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+        }
+
+        .training-hero .hero-content {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .training-hero h1 {
+            color: white;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+
+        .training-hero p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            line-height: 1.6;
+        }
+
+        .training-hero .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+            animation: buttonsFadeIn 0.3s ease-out forwards;
+        }
+
+        @keyframes buttonsFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .training-hero .btn {
+            font-size: 1.2rem;
+            padding: 1rem 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .training-hero .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .training-hero .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .training-hero .btn-outline {
+            border: 2px solid white;
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .training-hero .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .training-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .training-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .training-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        .training-features {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+
+        .training-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .training-features i {
+            color: var(--primary);
+        }
+
+        .training-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .training-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .training-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .stat-text {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            padding: 6rem 0;
+            text-align: center;
+            color: white;
+            margin-top: 4rem;
+        }
+
+        .guarantee-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .training-grid {
+                padding: 1rem;
+            }
+            
+            .training-card {
+                margin: 0.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .training-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .training-hero p {
+                font-size: 1.2rem;
+            }
+
+            .training-hero .hero-content {
+                margin: 0 1rem;
+                padding: 2rem;
+            }
+
+            .training-hero .btn {
+                font-size: 1rem;
+                padding: 0.8rem 1.5rem;
+            }
+        }
+
+        .motivation-popup {
+            position: fixed;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.85), rgba(61, 21, 95, 0.85));
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: popupFloat 7s ease-in-out forwards;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            max-width: 300px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .motivation-popup i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes popupFloat {
+            0% {
+                opacity: 0;
+                transform: translate(0, 20px);
+            }
+            10% {
+                opacity: 0.9;
+                transform: translate(0, 0);
+            }
+            30% {
+                transform: translate(20px, -20px);
+            }
+            50% {
+                transform: translate(-20px, 20px);
+            }
+            70% {
+                transform: translate(10px, -10px);
+            }
+            90% {
+                opacity: 0.9;
+                transform: translate(0, 0);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(0, -20px);
+            }
+        }
+
+        .popup-container {
+            position: fixed;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .motivation-popup {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+                max-width: 250px;
+            }
+
+            .motivation-popup i {
+                font-size: 1.2rem;
+                padding: 0.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="popup-container"></div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-main">Kamil Rosikiewicz</span>
+                <span class="logo-subtitle">Content Creator</span>
+            </a>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">O mnie</a></li>
+                <li><a href="index.html#services">Usługi</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#contact">Kontakt</a></li>
+                <li><a href="szkolenia.html" class="btn btn-primary">Szkolenia</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="training-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Profesjonalne szkolenia z tworzenia treści wideo</h1>
+                <p>Naucz się tworzyć angażujące treści wideo dla social mediów i rozwiń swoją markę osobistą</p>
+                <div class="hero-buttons">
+                    <a href="#trainings" class="btn btn-primary">Zobacz szkolenia</a>
+                    <a href="#contact" class="btn btn-outline">Skontaktuj się</a>
+                </div>
+            </div>
+        </div>
+        <div class="video-dots"></div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="container">
+        <div class="training-stats">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-text">Przeszkolonych osób</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">98%</div>
+                <div class="stat-text">Zadowolonych klientów</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50M+</div>
+                <div class="stat-text">Łącznych wyświetleń</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainings Section -->
+    <section id="trainings" class="section">
+        <div class="container">
+            <h2 class="section-title">Dostępne szkolenia</h2>
+            <div class="training-grid">
+                <!-- Basic Training -->
+                <div class="training-card">
+                    <div class="training-badge">Podstawowy</div>
+                    <h3>Start z Content</h3>
+                    <p>Idealne dla początkujących twórców</p>
+                    <div class="training-price">999 zł</div>
+                    <ul class="training-features">
+                        <li><i class="fas fa-check"></i> Podstawy montażu wideo</li>
+                        <li><i class="fas fa-check"></i> Obsługa sprzętu</li>
+                        <li><i class="fas fa-check"></i> Podstawy storytellingu</li>
+                        <li><i class="fas fa-check"></i> 4 godziny konsultacji</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Zapisz się</a>
+                </div>
+
+                <!-- Pro Training -->
+                <div class="training-card">
+                    <div class="training-badge">Profesjonalny</div>
+                    <h3>Content Pro</h3>
+                    <p>Dla osób chcących rozwinąć swoje umiejętności</p>
+                    <div class="training-price">1999 zł</div>
+                    <ul class="training-features">
+                        <li><i class="fas fa-check"></i> Zaawansowany montaż</li>
+                        <li><i class="fas fa-check"></i> Efekty specjalne</li>
+                        <li><i class="fas fa-check"></i> Marketing w social media</li>
+                        <li><i class="fas fa-check"></i> 8 godzin konsultacji</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Zapisz się</a>
+                </div>
+
+                <!-- Master Training -->
+                <div class="training-card">
+                    <div class="training-badge">Master</div>
+                    <h3>Content Master</h3>
+                    <p>Kompletny program dla przyszłych ekspertów</p>
+                    <div class="training-price">3999 zł</div>
+                    <ul class="training-features">
+                        <li><i class="fas fa-check"></i> Wszystko z poprzednich pakietów</li>
+                        <li><i class="fas fa-check"></i> Indywidualny plan rozwoju</li>
+                        <li><i class="fas fa-check"></i> Dostęp do społeczności</li>
+                        <li><i class="fas fa-check"></i> 16 godzin konsultacji</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Zapisz się</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Rozpocznij swoją przygodę z tworzeniem wideo</h2>
+            <p>Dołącz do grona profesjonalnych twórców treści</p>
+            <div class="guarantee-box">
+                <h3><i class="fas fa-shield-alt"></i> Gwarancja satysfakcji</h3>
+                <p>Jeśli w ciągu 30 dni nie będziesz zadowolony ze szkolenia, zwrócimy Ci pieniądze</p>
+            </div>
+            <div class="hero-buttons" style="margin-top: 2rem;">
+                <a href="#contact" class="btn btn-primary">Zapisz się teraz</a>
+                <a href="#trainings" class="btn btn-outline">Zobacz szczegóły</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <h2 class="section-title">Zapisz się na szkolenie</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Informacje kontaktowe</h3>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>szkolenia@cammanvideo.pl</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Telefon</h4>
+                            <p>+48 782 977 773</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="trainingForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Imię i nazwisko" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" required>
+                                <option value="">Wybierz szkolenie</option>
+                                <option value="basic">Start z Content - 999 zł</option>
+                                <option value="pro">Content Pro - 1999 zł</option>
+                                <option value="master">Content Master - 3999 zł</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Twoja wiadomość" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Wyślij zgłoszenie</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>O szkoleniach</h3>
+                    <p>Profesjonalne szkolenia z tworzenia treści wideo dla mediów społecznościowych. Rozwiń swoje umiejętności pod okiem eksperta.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Szybkie linki</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Strona główna</a></li>
+                        <li><a href="#trainings">Szkolenia</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Social Media</h3>
+                    <div class="social-proof">
+                        <a href="https://www.tiktok.com/@kamil.rosikiewicz" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/kamil.rosikiewicz/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CammanVideo. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Obsługa formularza szkoleniowego
+        document.getElementById('trainingForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Dziękujemy za zgłoszenie! Skontaktujemy się wkrótce w sprawie szczegółów szkolenia.');
+            e.target.reset();
+        });
+
+        // Popup messages
+        const motivationalMessages = [
+            { icon: 'fas fa-star', text: 'Ponad 500 zadowolonych kursantów!' },
+            { icon: 'fas fa-rocket', text: 'Zacznij zarabiać na tworzeniu treści wideo!' },
+            { icon: 'fas fa-chart-line', text: 'Zwiększ zasięgi swojej marki o 300%' },
+            { icon: 'fas fa-graduation-cap', text: 'Dołącz do społeczności profesjonalnych twórców' },
+            { icon: 'fas fa-check-circle', text: 'Gwarancja zwrotu pieniędzy przez 30 dni' },
+            { icon: 'fas fa-bolt', text: 'Zacznij już dziś i otrzymaj bonus powitalny!' },
+            { icon: 'fas fa-users', text: 'Dołącz do ekskluzywnej grupy twórców' },
+            { icon: 'fas fa-medal', text: 'Zdobądź certyfikat profesjonalnego twórcy' },
+            { icon: 'fas fa-heart', text: '98% kursantów poleca nasze szkolenia' },
+            { icon: 'fas fa-fire', text: 'Ostatnie miejsca w tej cenie!' }
+        ];
+
+        function createPopup() {
+            const container = document.querySelector('.popup-container');
+            const message = motivationalMessages[Math.floor(Math.random() * motivationalMessages.length)];
+            
+            const popup = document.createElement('div');
+            popup.className = 'motivation-popup';
+            popup.innerHTML = `
+                <i class="${message.icon}"></i>
+                <span>${message.text}</span>
+            `;
+
+            // Losowanie strony (lewa lub prawa)
+            const side = Math.random() < 0.5 ? 'left' : 'right';
+            
+            // Ustawianie pozycji X w zależności od wybranej strony
+            const randomX = side === 'left' 
+                ? Math.random() * (window.innerWidth * 0.25) // 25% szerokości ekranu od lewej
+                : window.innerWidth - (Math.random() * (window.innerWidth * 0.25) + 350); // 25% szerokości ekranu od prawej
+            
+            const randomY = Math.random() * (window.innerHeight - 100);
+            
+            popup.style.left = randomX + 'px';
+            popup.style.top = randomY + 'px';
+            
+            container.appendChild(popup);
+
+            setTimeout(() => {
+                popup.remove();
+            }, 5000);
+        }
+
+        let popupInterval;
+
+        function startPopups() {
+            createPopup();
+            popupInterval = setInterval(createPopup, 7000);
+        }
+
+        function stopPopups() {
+            clearInterval(popupInterval);
+        }
+
+        // Start popups after page load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(startPopups, 3000);
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopPopups();
+            } else {
+                startPopups();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Tło -->
+    <rect width="512" height="512" rx="128" fill="#FF3366"/>
+    
+    <!-- Litera C -->
+    <path d="M256 96C167.634 96 96 167.634 96 256C96 344.366 167.634 416 256 416C315.346 416 367.454 384.915 397.255 337.745L338.745 304.255C320.546 332.085 290.454 350 256 350C204.634 350 162 307.366 162 256C162 204.634 204.634 162 256 162C290.454 162 320.546 179.915 338.745 207.745L397.255 174.255C367.454 127.085 315.346 96 256 96Z" fill="white"/>
+    
+    <!-- Obiektyw kamery -->
+    <circle cx="256" cy="256" r="64" stroke="white" stroke-width="24"/>
+    <circle cx="256" cy="256" r="32" fill="white"/>
+    
+    <!-- Błysk -->
+    <path d="M384 192L416 160M384 320L416 352M128 192L96 160M128 320L96 352" stroke="white" stroke-width="16" stroke-linecap="round"/>
+</svg> 
